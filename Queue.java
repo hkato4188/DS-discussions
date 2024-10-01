@@ -1,11 +1,11 @@
 package Queue;
 
-public class Queue {
+public class Queue<T> {
 
     public int length;
 
-    public Node head;
-    public Node tail;
+    public Node<T> head;
+    public Node<T> tail;
 
     public Queue() {
         this.length = 0;
@@ -26,7 +26,7 @@ public class Queue {
     // return the value of the current head
     // then pop it by setting head ref to the head next ref
 
-    public Node dequeue() {
+    public Node<T> dequeue() {
         // if (length == 0) {
         // System.out.println("there is no head or tail, you can't perform this
         // action");
@@ -37,7 +37,7 @@ public class Queue {
             this.length--;
             return this.head;
         } else {
-            Node temp = this.head;
+            Node<T> temp = this.head;
             this.head = this.head.next;
             temp.next = null;
             this.length--;
@@ -45,15 +45,15 @@ public class Queue {
         }
     }
 
-    public void enqueue(int data) {
-        Node appendedNode = new Node(data);
+    public void enqueue(T data) {
+        Node<T> appendedNode = new Node<T>(data);
 
         if (this.length == 0) {
             this.head = appendedNode;
             this.tail = appendedNode;
             this.length++;
         } else {
-            Node temp = this.tail;
+            Node<T> temp = this.tail;
             temp.next = appendedNode;
             this.tail = appendedNode;
             this.length++;
@@ -63,7 +63,7 @@ public class Queue {
     public String toString() {
         String ourQueueString = "";
 
-        Node current = this.head;
+        Node<T> current = this.head;
 
         for (int i = 0; i < this.length; i++) {
             ourQueueString = ourQueueString + " " + current.data;
